@@ -1,4 +1,4 @@
-module github.com/Yandex-Practicum/42-docker-final
+module github.com/Yandex-Practicum/12-sprint-workflow
 
 go 1.22.0
 

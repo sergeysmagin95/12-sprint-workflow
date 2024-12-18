@@ -43,8 +43,10 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t sergeysmagin95/parcel_project:${{ github.ref }} .
+          TAG=${GITHUB_REF##*/}
+          docker build -t sergeysmagin95/12-sprint-workflow:${TAG} .
 
       - name: Push Docker image
         run: |
-          docker push sergeysmagin95/parcel_project:${{ github.ref }}
+          TAG=${GITHUB_REF##*/}
+          docker push sergeysmagin95/12-sprint-workflow:${TAG}

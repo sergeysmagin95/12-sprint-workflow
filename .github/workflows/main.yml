@@ -3,10 +3,10 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - create-workflow
+      - create-workflow-v2
   pull_request:
     branches:
-      - create-workflow
+      - create-workflow-v2
   release:
     types: [created]
 
@@ -29,7 +29,6 @@ jobs:
   publish:
     runs-on: ubuntu-22.04
     needs: build
-    if: startsWith(github.ref, 'refs/tags/')
 
     steps:
       - name: Checkout code
@@ -43,10 +42,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          TAG=${GITHUB_REF##*/} #получение тега
-          docker build -t smaug995/12-sprint-workflow:${TAG} .
+          docker build -t smaug995/12-sprint-workflow:latest .
 
       - name: Push Docker image
         run: |
-          TAG=${GITHUB_REF##*/} #получение тега
-          docker push smaug995/12-sprint-workflow:${TAG}
+          docker push smaug995/12-sprint-workflow:latest
